@@ -1,6 +1,7 @@
 package com.example.mylook.outift
 
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/outfits")
@@ -10,6 +11,13 @@ class OutfitController(private val repository: OutfitRepository) {
         val outfits: MutableIterable<Outfit> = repository.findAll()
 
         return outfits
+    }
+
+    @GetMapping("/{id}")
+    fun retrieve(@PathVariable id: Int): Optional<Outfit> {
+        val outfit: Optional<Outfit> = repository.findById(id)
+
+        return outfit
     }
 
     @PostMapping("/")
