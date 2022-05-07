@@ -36,6 +36,12 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	allOpen {
+		annotation("javax.persistence.Entity")
+		annotation("javax.persistence.Embeddable")
+		annotation("javax.persistence.MappedSuperclass")
+	}
 }
 
 tasks.withType<KotlinCompile> {

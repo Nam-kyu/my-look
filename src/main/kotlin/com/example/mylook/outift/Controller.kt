@@ -4,10 +4,12 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/outfits")
-class OutfitController {
+class OutfitController(private val repository: OutfitRepository) {
     @GetMapping("/")
-    fun list(): String {
-        return "list"
+    fun list(): MutableIterable<Outfit> {
+        val outfits: MutableIterable<Outfit> = repository.findAll()
+
+        return outfits
     }
 
     @PostMapping("/")
